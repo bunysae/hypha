@@ -3,6 +3,7 @@ from itertools import groupby
 from operator import methodcaller
 
 from django import forms
+from django.db.models import Q
 from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
@@ -100,6 +101,12 @@ class ScreeningSubmissionForm(ApplicationSubmissionModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
         super().__init__(*args, **kwargs)
+        screening_status = self.fields['screening_status']
+        if self.instance.screening_status is None:
+            screening_status.label = 'Set screening status to'
+        else:
+            screening_status.label = f'Update screening status from { self.instance.screening_status } to'
+        screening_status.queryset = screening_status.queryset.filter(Q(is_archived=False) | Q(id=self.instance.screening_status_id))
         self.should_show = False
         if self.user.is_apply_staff:
             self.should_show = True

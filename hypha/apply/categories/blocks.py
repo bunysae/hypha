@@ -61,7 +61,7 @@ class CategoryQuestionBlock(OptionalFormFieldBlock):
         kwargs = super().get_field_kwargs(struct_value)
         category = struct_value['category']
         kwargs = self.use_defaults_from_category(kwargs, category)
-        choices = category.options.values_list('id', 'value')
+        choices = category.options.exclude(is_archived=True).values_list('id', 'value')
         kwargs.update({'choices': choices})
         return kwargs
 
