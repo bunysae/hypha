@@ -1,6 +1,21 @@
-(function ($) {
+jQuery(function ($) {
 
     'use strict';
+
+    // django-file-form
+    $('form.application-form').get().forEach(function (e) {
+        // Prevent initilising it multiple times and run it for forms
+        // that have a `form_id` field added by django-file-form.
+        if (!e.initUploadFieldsDone && e.querySelector('[name=form_id]')) {
+            window.initUploadFields(e);
+            e.initUploadFieldsDone = true;
+        }
+    });
+    $('label[for=id_files]').hide();
+    $('input[type=hidden]').closest('.form__group').hide();
+
+    // TODO: check what we else need from this file
+    return; /* eslint-disable */
 
     $('.form__group--file').each(function () {
         var $file_field = $(this);
@@ -54,4 +69,4 @@
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     }
 
-})(jQuery);
+});
