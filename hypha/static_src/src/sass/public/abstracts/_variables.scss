@@ -36,6 +36,7 @@ $color--linkedin: #137ab8;
 $color--facebook: #396ab5;
 
 // Transparent
+$color--black-60: rgba(0, 0, 0, .6);
 $color--black-50: rgba(0, 0, 0, .5);
 $color--black-40: rgba(0, 0, 0, .4);
 $color--black-25: rgba(0, 0, 0, .25);
@@ -109,3 +110,6 @@ $mobile-gutter: 20px;
 
 // Dropdown height
 $dropdown-height: 45px;
+
+// Table breakpoint
+$table-breakpoint: 'tablet-landscape';
