@@ -17,6 +17,9 @@ class Option(Orderable):
     value = models.CharField(max_length=255)
     category = ParentalKey('Category', related_name='options')
 
+    def __str__(self):
+        return self.value
+
 
 class Category(ClusterableModel):
     """Used to manage the global select questions used in most of the application form
