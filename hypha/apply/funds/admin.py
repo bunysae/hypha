@@ -114,6 +114,7 @@ class ScreeningStatusAdmin(ModelAdmin):
     model = ScreeningStatus
     menu_icon = 'tag'
     permission_helper_class = ScreeningStatusPermissionHelper
+    list_display = ('title', 'yes', 'default')
 
 
 class SealedRoundAdmin(BaseRoundAdmin):

@@ -2,6 +2,7 @@ from django.urls import path
 from rest_framework_nested import routers
 
 from hypha.apply.api.v1.review.views import SubmissionReviewViewSet
+from hypha.apply.api.v1.screening.views import ScreeningStatusViewSet
 
 from .views import (
     CommentViewSet,
@@ -19,6 +20,7 @@ router = routers.SimpleRouter()
 router.register(r'submissions', SubmissionViewSet, basename='submissions')
 router.register(r'comments', CommentViewSet, basename='comments')
 router.register(r'rounds', RoundViewSet, basename='rounds')
+router.register(r'screening_statuses', ScreeningStatusViewSet, basename='screenings')
 
 submission_router = routers.NestedSimpleRouter(router, r'submissions', lookup='submission')
 submission_router.register(r'actions', SubmissionActionViewSet, basename='submission-actions')
